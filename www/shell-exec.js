@@ -1,10 +1,7 @@
-function ShellExec() {
-  this.exec = function(cmd, callback) {
-    return cordova.exec(callback, function(err) {
-      callback({exitStatus: 100, output: err});
-    }, "ShellExec", "exec", [cmd]);
+var exec = require("cordova/exec");
 
-  };
-}
-
-window.ShellExec = new ShellExec()
+exports.rootExec = function (cmd, callback) {
+  exec(callback, function (err) {
+    callback({exitStatus: 100, output: err});
+  }, "ShellExec", "rootExec", cmd);
+};
